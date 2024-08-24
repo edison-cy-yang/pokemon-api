@@ -8,12 +8,15 @@ const router = Router()
 
 router.get('/pokemons', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const limit = parseInt(req.query.limit as string) || 50
-    const offset = parseInt(req.query.offset as string) || 0
+    const perPage = parseInt(req.query.perPage as string) || 50
+    const page = parseInt(req.query.page as string) || 0
 
-    if (limit < 1 || offset < 0) {
-      return res.status(400).json({ error: "Limit must be greater than 0 and offset must be non-negative"})
+    if (page < 1 || perPage < 0) {
+      return res.status(400).json({ error: "page and perPage must be great than 0"})
     }
+
+    const offset = (page - 1) * perPage
+    const limit = perPage
 
     const response = await axios.get<PokemonListResponse>(`${POKEAPI_BASE_URL}/pokemon`, {
       params: { limit, offset }
