@@ -1,0 +1,1 @@
+export { default as pokemonRoutes} from './pokemons.ts'
