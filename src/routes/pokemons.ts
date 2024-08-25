@@ -28,7 +28,7 @@ router.get('/pokemons', async (req: Request, res: Response, next: NextFunction) 
       try {
         const pokemonDetail = await axios.get<PokemonDetailResponse>(pokemon.url)
         return {
-          id: pokemonDetail.data.id,
+          id: pokemonDetail.data.id.toString(),
           name: pokemon.name,
           image_url: pokemonDetail.data.sprites.front_default
         }
