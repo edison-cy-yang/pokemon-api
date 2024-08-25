@@ -28,12 +28,14 @@ router.get('/pokemons', async (req: Request, res: Response, next: NextFunction) 
       try {
         const pokemonDetail = await axios.get<PokemonDetailResponse>(pokemon.url)
         return {
+          id: pokemonDetail.data.id,
           name: pokemon.name,
           image_url: pokemonDetail.data.sprites.front_default
         }
       } catch (error) {
         console.error(`Error fetching details for ${pokemon.name}: ${error}`)
         return {
+          id: null,
           name: pokemon.name,
           image_url: null
         }
