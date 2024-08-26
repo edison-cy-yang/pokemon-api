@@ -6,6 +6,16 @@ import { PokemonDetailResponse, PokemonListResponse, PokemonSummary } from 'mode
 
 const router = Router()
 
+/**
+ * GET /pokemons
+ * Fetches a list of Pokémon with optional pagination.
+ *
+ * @route GET /pokemons
+ * @param {Request} req - The Express request object.
+ * @param {Response} res - The Express response object.
+ * @param {NextFunction} next - The next middleware function in the stack.
+ * @returns {Promise<void>} A list of Pokémon including basic and detailed information.
+ */
 router.get('/pokemons', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const perPage = parseInt(req.query.perPage as string) || 50
@@ -24,6 +34,7 @@ router.get('/pokemons', async (req: Request, res: Response, next: NextFunction) 
 
     const pokemonsList = response.data.results
 
+    // Take the response and query the pokemon detail endpoint
     const detailedPokemonPromises = pokemonsList.map(async (pokemon: PokemonSummary) => {
       try {
         const pokemonDetail = await axios.get<PokemonDetailResponse>(pokemon.url)
