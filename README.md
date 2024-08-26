@@ -13,7 +13,6 @@ A basic Express.js application setup with Node.js.
 First, make sure you have all the required dependencies installed:
 
 ```bash
-nvm use
 npm install
 ```
 
@@ -23,13 +22,4 @@ To run the app in development mode
 
 ```bash
 npm run dev
-```
-
-### 3. Build and Run
-
-To build the application and run the compiled code
-
-```bash
-npm run build
-npm run start
 ```
