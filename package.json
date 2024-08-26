@@ -12,8 +12,10 @@
   "author": "Edison Yang",
   "license": "MIT",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "@types/morgan": "^1.9.9",
     "axios": "^1.7.5",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "morgan": "^1.10.0"
   },
